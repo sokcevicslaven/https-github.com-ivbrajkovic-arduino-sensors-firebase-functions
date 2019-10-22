@@ -15,3 +15,5 @@ exports.isEmail = value => !value.match(emailRegEx);
 exports.asyncWrapper = fn => {
 	(req, res, next = console.error) => Promise.resolve(fn(req, res, next)).catch(next);
 };
+
+exports.logObj = object => console.log('TCL: object', JSON.stringify(object, null, 2));

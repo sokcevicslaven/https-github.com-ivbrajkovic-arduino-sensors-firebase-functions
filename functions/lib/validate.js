@@ -1,7 +1,6 @@
 // Validate signup and signin data
 
-const isEmail = require('./utility').isEmail;
-const isEmptyStr = require('./utility').isEmptyStr;
+const { isEmail, isEmptyStr } = require('./utility');
 
 exports.validateSignUp = data => {
 	// Error object
@@ -40,4 +39,3 @@ exports.validateSignIn = data => {
 	// If empty than no errors
 	return err;
 };
-

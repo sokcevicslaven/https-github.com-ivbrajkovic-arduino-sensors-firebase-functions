@@ -1,9 +1,7 @@
 // Authentication - signin
 
-const db = require('../admin').db;
-const firebase = require('../admin').firebase;
-const isEmptyObj = require('../lib').isEmptyObj;
-const validateSignIn = require('../lib').validateSignIn;
+const { firebase } = require('../admin');
+const { isEmptyObj, validateSignIn } = require('../lib');
 
 exports.signIn = (req, res) => {
 	// Create user object

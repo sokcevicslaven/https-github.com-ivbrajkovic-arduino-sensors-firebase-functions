@@ -21,15 +21,16 @@ exports.getData = (req, res) => {
 // POST sensor data
 exports.postData = (req, res) => {
 	// Create new document
-	const sensorData = {
-		arduino: req.body.arduino,
-		co2: req.body.co2,
-		humidity: req.body.humidity,
-		temperature: req.body.temperature,
-		date: new Date().toISOString()
-	};
+	// const sensorData = {
+	// 	arduino: req.body.arduino,
+	// 	co2: req.body.co2,
+	// 	humidity: req.body.humidity,
+	// 	temperature: req.body.temperature,
+	// 	date: new Date().toISOString()
+	// };
 
-	//console.log('TCL: exports.postData -> sensorData', JSON.stringify(sensorData, null, 2));
+	const sensorData = { ...req.body, date: new Date().toISOString() };
+	require('../lib').logObj(sensorData);
 
 	// Add new document to firebase
 	db.collection('sensors')

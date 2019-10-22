@@ -1,9 +1,7 @@
 // Authentication - signup
 
-const db = require('../admin').db;
-const firebase = require('../admin').firebase;
-const isEmptyObj = require('../lib').isEmptyObj;
-const validateSignUp = require('../lib').validateSignUp;
+const { firebase, db } = require('../admin');
+const { isEmptyObj, validateSignUp } = require('../lib');
 
 exports.signUp = (req, res) => {
 	// Create user object and append date created
