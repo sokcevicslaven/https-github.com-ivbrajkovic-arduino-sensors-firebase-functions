@@ -28,5 +28,5 @@ exports.auth = (req, res, next) => {
 			// Proceed with request
 			return next();
 		})
-		.catch(err => res.status(403).json(err));
+		.catch(err => res.status(403).json({ error: err.code }));
 };

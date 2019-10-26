@@ -1,8 +1,10 @@
 // Routes
 
 module.exports = {
-	getData: require('./data').getData,
-	postData: require('./data').postData,
+	getAllSensorData: require('./data').getAllSensorData,
+	getSensorDataTop10: require('./data').getSensorDataTop10,
+	getSensorDataInRange: require('./data').getSensorDataInRange,
+	createSensorData: require('./data').createSensorData,
 	signUp: require('./signUp').signUp,
-	signIn: require('./signIn').signIn,
+	signIn: require('./signIn').signIn
 };

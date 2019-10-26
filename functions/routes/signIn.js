@@ -6,8 +6,7 @@ const { isEmptyObj, validateSignIn } = require('../lib');
 exports.signIn = (req, res) => {
 	// Create user object
 	const user = { ...req.body };
-
-	// console.log('TCL: exports.signIn -> req.body', JSON.stringify(req.body, null, 2));
+	//require('../lib').logObj(user);
 
 	// Validate user object
 	const err = validateSignIn(user);

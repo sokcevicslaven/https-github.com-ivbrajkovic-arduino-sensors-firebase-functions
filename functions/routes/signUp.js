@@ -6,8 +6,7 @@ const { isEmptyObj, validateSignUp } = require('../lib');
 exports.signUp = (req, res) => {
 	// Create user object and append date created
 	const user = { ...req.body, created: new Date().toISOString() };
-
-	// console.log('TCL: exports.signUp -> req.body', JSON.stringify(req.body, null, 2));
+	//require('../lib').logObj(user);
 
 	// Validate user object
 	const error = validateSignUp(user);

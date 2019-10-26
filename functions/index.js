@@ -7,8 +7,10 @@ const app = require('express')();
 const { auth } = require('./middlewares');
 
 // Data routes
-app.get('/data', auth, require('./routes').getData);
-app.post('/data', auth, require('./routes').postData);
+app.get('/data', auth, require('./routes').getAllSensorData);
+app.get('/data-top', auth, require('./routes').getSensorDataTop10);
+app.post('/data-range', auth, require('./routes').getSensorDataInRange);
+app.post('/data', auth, require('./routes').createSensorData);
 
 // Authentication routes
 app.post('/signup', require('./routes').signUp);
