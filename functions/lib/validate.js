@@ -2,7 +2,7 @@
 
 const { isEmail, isEmptyStr } = require('./utility');
 
-exports.validateSignUp = data => {
+exports.validateSignup = data => {
 	// Error object
 	let err = {};
 
@@ -25,7 +25,7 @@ exports.validateSignUp = data => {
 	return err;
 };
 
-exports.validateSignIn = data => {
+exports.validateLogin = data => {
 	// Error object
 	let err = {};
 

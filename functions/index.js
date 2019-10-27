@@ -13,7 +13,7 @@ app.post('/data-range', auth, require('./routes').getSensorDataInRange);
 app.post('/data', auth, require('./routes').createSensorData);
 
 // Authentication routes
-app.post('/signup', require('./routes').signUp);
-app.post('/login', require('./routes').signIn);
+app.post('/login', require('./routes').login);
+app.post('/signup', require('./routes').signup);
 
 exports.api = functions.region('europe-west1').https.onRequest(app);

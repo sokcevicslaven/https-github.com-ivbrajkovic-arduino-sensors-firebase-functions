@@ -1,15 +1,15 @@
 // Authentication - signin
 
 const { firebase } = require('../admin');
-const { isEmptyObj, validateSignIn } = require('../lib');
+const { isEmptyObj, validateLogin } = require('../lib');
 
-exports.signIn = (req, res) => {
+exports.login = (req, res) => {
 	// Create user object
 	const user = { ...req.body };
 	//require('../lib').logObj(user);
 
 	// Validate user object
-	const err = validateSignIn(user);
+	const err = validateLogin(user);
 	if (!isEmptyObj(err)) return res.status(400).json(err);
 
 	// Validate username and get it's token
@@ -20,10 +20,10 @@ exports.signIn = (req, res) => {
 		.then(token => res.json({ token }))
 		.catch(err => {
 			if (err.code === 'auth/user-not-found')
-				return res.status(403).json({ login: 'User not found.' });
+				return res.status(403).json({ error: 'User not found.' });
 
 			if (err.code === 'auth/wrong-password')
-				return res.status(403).json({ login: 'Wrong password.' });
+				return res.status(403).json({ error: 'Wrong password.' });
 
 			return res.status(500).json({ error: err.code });
 		});

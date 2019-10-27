@@ -1,15 +1,15 @@
 // Authentication - signup
 
 const { firebase, db } = require('../admin');
-const { isEmptyObj, validateSignUp } = require('../lib');
+const { isEmptyObj, validateSignup } = require('../lib');
 
-exports.signUp = (req, res) => {
+exports.signup = (req, res) => {
 	// Create user object and append date created
 	const user = { ...req.body, created: new Date().toISOString() };
 	//require('../lib').logObj(user);
 
 	// Validate user object
-	const error = validateSignUp(user);
+	const error = validateSignup(user);
 	if (!isEmptyObj(error)) return res.status(400).json({ error: error });
 
 	// Validate username, create new user and get the user token
