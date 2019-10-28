@@ -12,8 +12,9 @@ app.get('/data-top', auth, require('./routes').getSensorDataTop10);
 app.post('/data-range', auth, require('./routes').getSensorDataInRange);
 app.post('/data', auth, require('./routes').createSensorData);
 
-// Authentication routes
+// User routes
 app.post('/login', require('./routes').login);
 app.post('/signup', require('./routes').signup);
+app.get('/user/:id', auth, require('./routes').getUserDetailsById);
 
 exports.api = functions.region('europe-west1').https.onRequest(app);

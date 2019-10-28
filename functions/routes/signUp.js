@@ -5,7 +5,7 @@ const { isEmptyObj, validateSignup } = require('../lib');
 
 exports.signup = (req, res) => {
 	// Create user object and append date created
-	const user = { ...req.body, created: new Date().toISOString() };
+	const user = { ...req.body, created: new Date() /*.toISOString()*/ };
 	//require('../lib').logObj(user);
 
 	// Validate user object
@@ -29,6 +29,7 @@ exports.signup = (req, res) => {
 		})
 		.then(token => {
 			tokenId = token;
+			delete user.confirmPassword;
 			return db
 				.collection('users')
 				.doc(user.username)
@@ -38,6 +39,6 @@ exports.signup = (req, res) => {
 		.catch(err => {
 			if (err.code === 'auth/email-already-in-use')
 				return res.status(400).json({ email: 'Already in use.' });
-			res.status(500).json({ error: err.code });
+			res.status(500).json({ error: err.toString() });
 		});
 };

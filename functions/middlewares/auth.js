@@ -5,7 +5,8 @@ const { admin, db } = require('../admin');
 exports.auth = (req, res, next) => {
 	// Return error if there is no auth header info
 	let token = req.headers.token;
-	if (!token || !token.startsWith('Bearer ')) res.status(403).json({ error: 'Not authorized.' });
+	if (!token || !token.startsWith('Bearer '))
+		return res.status(403).json({ error: 'Not authorized.' });
 
 	//require('../lib').logObj(token);
 
@@ -28,5 +29,5 @@ exports.auth = (req, res, next) => {
 			// Proceed with request
 			return next();
 		})
-		.catch(err => res.status(403).json({ error: err.code }));
+		.catch(err => res.status(403).json({ error: err.toString() }));
 };

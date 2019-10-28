@@ -60,7 +60,7 @@ exports.getSensorDataInRange = (req, res) => {
 		})
 		.catch(err => {
 			console.log(`Error getting documents, error: ${err}`);
-			res.json(err);
+			res.json({ error: err.toString() });
 		});
 };
 
