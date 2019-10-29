@@ -1,4 +1,4 @@
-// Authentication - signin
+// Authentication - login user
 
 const { firebase, db } = require('../admin');
 const { isEmptyObj, validateLogin } = require('../lib');
@@ -8,12 +8,11 @@ exports.login = (req, res) => {
 	const user = { ...req.body };
 	//require('../lib').logObj(user);
 
-	// Validate user object
+	// Validate login data
 	const err = validateLogin(user);
 	if (!isEmptyObj(err)) return res.status(400).json(err);
 
-	// Validate username and get it's token
-	let userId, tokenId;
+	// Create new user and get his token
 	firebase
 		.auth()
 		.signInWithEmailAndPassword(user.email, user.password)
@@ -45,6 +44,7 @@ exports.login = (req, res) => {
 			if (err.code === 'auth/wrong-password')
 				return res.status(403).json({ error: 'Wrong password.' });
 
-			return res.status(500).json({ error: err.toString() });
+			console.log('TCL: exports.login -> err', err);
+			return res.status(500).json({ error: err.code });
 		});
 };

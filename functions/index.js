@@ -10,7 +10,7 @@ const { auth } = require('./middlewares');
 app.get('/data', auth, require('./routes').getAllSensorData);
 app.get('/data-top', auth, require('./routes').getSensorDataTop10);
 app.post('/data-range', auth, require('./routes').getSensorDataInRange);
-app.post('/data', auth, require('./routes').createSensorData);
+app.post('/data' /*, auth */, require('./routes').createSensorData);
 
 // User routes
 app.post('/login', require('./routes').login);

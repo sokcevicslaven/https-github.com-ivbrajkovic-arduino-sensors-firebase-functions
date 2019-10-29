@@ -1,24 +1,27 @@
-// Authentication - signup
+// Authentication - signup new user
 
 const { firebase, db } = require('../admin');
 const { isEmptyObj, validateSignup } = require('../lib');
 
 exports.signup = (req, res) => {
-	// Create user object and append date created
-	const user = { ...req.body, created: new Date() /*.toISOString()*/ };
+	// Create user object and append creation date
+	const user = {
+		...req.body,
+		created: new Date() /*.toISOString()*/
+	};
 	//require('../lib').logObj(user);
 
-	// Validate user object
-	const error = validateSignup(user);
-	if (!isEmptyObj(error)) return res.status(400).json({ error: error });
+	// Validate signup data
+	const err = validateSignup(user);
+	if (!isEmptyObj(err)) return res.status(400).json(err);
 
-	// Validate username, create new user and get the user token
+	// Create new user and get his token
 	let tokenId, userId;
 	db.collection('users')
 		.doc(user.username)
 		.get()
 		.then(username => {
-			if (username.exists) return res.status(400).json({ username: 'Already taken.' });
+			if (username.exists) return res.status(400).json({ username: 'Username already taken.' });
 
 			// Create new user
 			return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
@@ -35,10 +38,19 @@ exports.signup = (req, res) => {
 				.doc(user.username)
 				.set({ ...user, userId });
 		})
-		.then(_ => res.status(201).json({ tokenId }))
+		.then(_ => {
+			delete user.password;
+			delete user.confirmPassword;
+			return res.status(201).json({ tokenId, user });
+		})
 		.catch(err => {
 			if (err.code === 'auth/email-already-in-use')
-				return res.status(400).json({ email: 'Already in use.' });
-			res.status(500).json({ error: err.toString() });
+				return res.status(400).json({ error: 'Already in use' });
+
+			if (err.code === 'auth/weak-password')
+				return res.status(400).json({ error: 'Weak password' });
+
+			console.log('TCL: exports.signup -> err', err);
+			return res.status(500).json({ error: err.code });
 		});
 };

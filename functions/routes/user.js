@@ -26,10 +26,12 @@ exports.getUserDetailsById = (req, res) => {
 		.then(snapshot => {
 			if (snapshot.empty) return res.status(400).json({ error: 'User not found' });
 
-			return res.json(snapshot.docs[0].data());
+			const user = snapshot.docs[0].data();
+			delete user.password;
+			return res.json({ user });
 		})
 		.catch(err => {
 			console.log(`Error getting documents, error: ${err}`);
-			res.status(500).json({ error: err.toString() });
+			res.status(500).json({ error: err.code });
 		});
 };
