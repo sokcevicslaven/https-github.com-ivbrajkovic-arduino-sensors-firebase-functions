@@ -52,7 +52,6 @@ exports.checkUsername = (req, res) => {
 
 	// Get user details from firebase
 	db.collection(`users`)
-		.collection('users')
 		.doc(username)
 		.get()
 		.then(snapshot => {
