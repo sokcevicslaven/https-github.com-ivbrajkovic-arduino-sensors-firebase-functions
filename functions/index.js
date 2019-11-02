@@ -15,6 +15,7 @@ app.post('/data' /*, auth */, require('./routes').createSensorData);
 // User routes
 app.post('/login', require('./routes').login);
 app.post('/signup', require('./routes').signup);
+app.get('/username/:username', require('./routes').checkUsername);
 app.get('/user/:id', auth, require('./routes').getUserDetailsById);
 
 exports.api = functions.region('europe-west1').https.onRequest(app);
