@@ -57,7 +57,7 @@ exports.checkUsername = (req, res) => {
 		.then(doc => {
 			// require('../lib').logObj(doc);
 			if (!doc.exists) return res.status(404).json({ success: false, error: 'User not found' });
-			else return res.status(404).json({ success: true, message: 'User found in database' });
+			else return res.status(200).json({ success: true, message: 'User found in database' });
 		})
 		.catch(err => {
 			console.log(`Error getting documents, error: ${err}`);
