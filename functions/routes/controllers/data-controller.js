@@ -17,7 +17,7 @@ exports.select = (req, res, next) => {
     .then(snapshot => {
       const sensorsData = [];
       snapshot.forEach(doc => sensorsData.push(doc.data()));
-      res.status(200).json({ success: 'ok', data: sensorsData });
+      res.status(200).json({ status: 'ok', data: sensorsData });
     })
     .catch(err => {
       console.log(`Error in getting sensor data, error: ${err.message}`);
@@ -45,7 +45,7 @@ exports.selectFromTo = ({ body }, res, next) => {
     .then(snapshot => {
       let sensorsData = [];
       snapshot.forEach(doc => sensorsData.push(doc.data()));
-      res.status(200).json({ success: 'ok', data: sensorsData });
+      res.status(200).json({ status: 'ok', data: sensorsData });
     })
     .catch(err => {
       console.log(`Error in getting sensor data, error: ${err.message}`);
@@ -70,7 +70,7 @@ exports.insert = (req, res) => {
     .then(doc => {
       res
         .status(200)
-        .json({ success: 'ok', data: `Added document with name: ${doc.id}` });
+        .json({ status: 'ok', data: `Added document with name: ${doc.id}` });
     })
     .catch(err => {
       console.log(`Error in inserting new sensor data, error: ${err.message}`);

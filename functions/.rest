@@ -1,10 +1,10 @@
 
 # Ctrl + Alt + R
 
-#@baseUrl = http://localhost:5000/arduino-sensors-754e5/europe-west1/api
-@baseUrl = https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api
+@baseUrl = http://localhost:5000/arduino-sensors-754e5/europe-west1/api
+#@baseUrl = https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api
 
-@token = eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSUIiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXVkIjoiYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXV0aF90aW1lIjoxNTg5NjUxNjU0LCJ1c2VyX2lkIjoiWUZ6TFRMUUtualczTFVSeHZ4b0ZlcVRKOWNmMiIsInN1YiI6IllGekxUTFFLbmpXM0xVUnh2eG9GZXFUSjljZjIiLCJpYXQiOjE1ODk2NTE2NTQsImV4cCI6MTU4OTY1NTI1NCwiZW1haWwiOiJpdmFuLmJyYWprb3ZpY0BpY2xvdWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIml2YW4uYnJhamtvdmljQGljbG91ZC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.cQqygU6Y9TX6IX-xIvOLYlDJsrfdfl6hJqlijfMc8knlU-G383OmUe8e1QG2bVfrYwd4qsdp5AnuPg52HqAvgPzsUM5E90bJWsSVftEzjDtwXaY2Rvp-g2A-nLJyNLJ8kbjiN-cjTu1FYQpoOQkyidzcSD2iljepYEgyaZCIDyAYPIg90icPutEKzpoNlkoEsxWwcWvBVmHQP7bjCtuCFGmfgYdSeUWKg_EWHlEkMSn7f7ZMMs25gqaKPOK4xkW4wv_MbWgMRzFZmdpnSNall2paKo-orKWyYXOI9PQirhaTnXjc8UXcCjYkddJN-OKq5n5amBBrIaE9sPG4WFnw_g
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1YzlhZWJlMjM0ZGE2MDE2YmQ3Yjk0OTE2OGI4Y2Q1YjRlYzllZWIiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSUIiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXVkIjoiYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXV0aF90aW1lIjoxNTg5ODM3MzI5LCJ1c2VyX2lkIjoiWUZ6TFRMUUtualczTFVSeHZ4b0ZlcVRKOWNmMiIsInN1YiI6IllGekxUTFFLbmpXM0xVUnh2eG9GZXFUSjljZjIiLCJpYXQiOjE1ODk4MzczMjksImV4cCI6MTU4OTg0MDkyOSwiZW1haWwiOiJpdmFuLmJyYWprb3ZpY0BpY2xvdWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIml2YW4uYnJhamtvdmljQGljbG91ZC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.SXtsguetlyAMyMWlJKLcRXJjhhjWH0GN5jE44kOlvC5T__gzUBCNr0wC1OVHfjXLaoWgOl4NyYvKTjf7mOTj9691qqa1S1ZR9G6oZycvGcmQn1bUlT7Hvr9rMiRsZIe1Yw14N0kWgoUNiyGM_kn_lZGp5eYrA4qRHFFBA2kvSYfryAvZUuJqAmng5dSV-HU9gLap-_Om3C78zcw2T6jxTG9urFg1JNOGyi00ws_DGzhja510miivcu3JVW5p8PJhFNLHm7JqPVaZa4nakdUSqTzNduCxFOM_g83gRcjPbDAvLRmoIfLhNYnwSUMh2JYXk-K2f0lNajNN1_eXjAkSVg
 
 ####################################################
 ### USER
@@ -36,8 +36,13 @@ content-type: application/json
 
 ### Get user by email
 
-GET {{baseUrl}}/user/ivan.brajkovic@icloud.com
-authorization: Bearer {{token}}
+GET {{baseUrl}}/user/email/ivan.brajkovic@icloud.com
+#authorization: Bearer {{token}}
+
+### Get user by email
+
+GET {{baseUrl}}/user/username/ivbrajkovics
+#authorization: Bearer {{token}}
 
 ####################################################
 ### DATA

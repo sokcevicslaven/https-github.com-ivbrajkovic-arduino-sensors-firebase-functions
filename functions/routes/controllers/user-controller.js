@@ -30,7 +30,7 @@ exports.login = ({ body }, res, next) => {
 
       // Get user details
       const user = snapshot.docs[0].data();
-      res.status(200).json({ success: 'ok', data: { user, token } });
+      res.status(200).json({ status: 'ok', data: { user, token } });
     })
     .catch(err => {
       if (err.code === 'auth/user-not-found')
@@ -82,7 +82,7 @@ exports.register = ({ body }, res, next) => {
         .set({ ...body, uid });
     })
     .then(_ => {
-      res.status(201).json({ success: 'ok', data: { user: body, token } });
+      res.status(201).json({ status: 'ok', data: { user: body, token } });
     })
     .catch(err => {
       if (err.code === 'auth/email-already-in-use')
@@ -95,21 +95,23 @@ exports.register = ({ body }, res, next) => {
 /**************************************************************/
 
 /**************************************************************
-* Get user by email
+* Check userexist by username or email
 @param {*} data Client req 
 @returns {*} Response object and status code
 ***************************************************************/
-exports.getUserByEmail = ({ params }, res, next) =>
-  db
-    .collection('users')
-    .where('email', '==', params.email)
+exports.checkUserByUsernameOrEmail = ({ params }, res, next) => {
+  const { username, email } = params;
+  const where = username
+    ? ['username', '==', username]
+    : ['email', '==', email];
+
+  db.collection('users')
+    .where(...where)
     .get()
     .then(snapshot => {
-      if (snapshot.empty)
-        return next(new ErrorHandler(errorMessages.USER_NOT_EXIST));
-
-      const user = snapshot.docs[0].data();
-      res.status(200).json({ success: 'ok', data: { user } });
+      if (snapshot.empty) res.status(200).json({ [where[0]]: 'not exist' });
+      else res.status(200).json({ [where[0]]: 'exist' });
     })
     .catch(err => next(new ErrorHandler(err)));
+};
 /**************************************************************/

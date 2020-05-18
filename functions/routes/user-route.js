@@ -28,17 +28,24 @@ router.post(
   userController.register
 );
 
-/***********************************************
- * PRIVATE ROUTES
- ***********************************************/
+router.get(
+  '/username/:username',
+  // privateRoute,
+  validate(userValidator.getUserByUsername),
+  userController.checkUserByUsernameOrEmail
+);
 
 // Get user by email
 router.get(
-  '/:email',
-  privateRoute,
+  '/email/:email',
+  // privateRoute,
   validate(userValidator.getUserByEmail),
-  userController.getUserByEmail
+  userController.checkUserByUsernameOrEmail
 );
+
+/***********************************************
+ * PRIVATE ROUTES
+ ***********************************************/
 
 // Export router
 module.exports = router;

@@ -27,9 +27,12 @@ module.exports = {
     checkCnfirmPassword
   ],
 
-  // Get user validator
+  // Delete user validator
+  delete: [checkEmail(param('email'))],
+
+  // Get user by email
   getUserByEmail: [checkEmail(param('email'))],
 
-  // Delete user validator
-  delete: [checkEmail(param('email'))]
+  // Get user by username
+  getUserByUsername: [checkTextField(param('username'))]
 };

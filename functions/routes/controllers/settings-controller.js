@@ -35,7 +35,7 @@ exports.selectId = ({ params }, res, next) =>
     .doc(params.id)
     .get()
     .then(doc => {
-      if (doc.exists) res.status(200).json({ success: 'ok', data: doc.data() });
+      if (doc.exists) res.status(200).json({ status: 'ok', data: doc.data() });
       else next(new ErrorHandler(errorMessages.DB_DOCUMENT_NOT_FOUND));
     })
     .catch(err => {
