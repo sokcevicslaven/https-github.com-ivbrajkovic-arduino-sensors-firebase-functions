@@ -1,9 +1,14 @@
 
 # Ctrl + Alt + R
 
-@baseUrl = http://localhost:5000/arduino-sensors-754e5/europe-west1/api
+#@baseUrl = http://localhost:5000/arduino-sensors-754e5/europe-west1/api
+@baseUrl = https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api
 
-@token = eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSUIiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXVkIjoiYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXV0aF90aW1lIjoxNTg5NTcwMTI5LCJ1c2VyX2lkIjoiWUZ6TFRMUUtualczTFVSeHZ4b0ZlcVRKOWNmMiIsInN1YiI6IllGekxUTFFLbmpXM0xVUnh2eG9GZXFUSjljZjIiLCJpYXQiOjE1ODk1NzAxMjksImV4cCI6MTU4OTU3MzcyOSwiZW1haWwiOiJpdmFuLmJyYWprb3ZpY0BpY2xvdWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIml2YW4uYnJhamtvdmljQGljbG91ZC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.UnX8FIZK-TNq0JjatptembLi_VUqlr0b5xQUU1QFyyYWLjFEtRmX8SKJoQCX0YRtAEIMtzoo9VfXMvL1gXdVGWlu9lB8ZoxeNvYx1CfklgUI-bOL1t2R7NeCTNkmOZ6_kXu7uQnWUEid7BFwSCFLiww3xIS6ViAM7IsbF89SBCkNDPTAlwEMOjB2zpzLvqn4dFNweONoPh6TNN3JCY1xoYEm5SstGu1i_YQ5icl0CZnxx8BzjwoDY6C9MSV7QEhcPK_nhur0TLOAZ9wTQ65MQ5XAd9DLxXOkawOm9d9EGbd966MTTIRENsEdDK6qsdvlV3_5NEyyQ21sqedI2PWwjg
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSUIiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXVkIjoiYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXV0aF90aW1lIjoxNTg5NjUxNjU0LCJ1c2VyX2lkIjoiWUZ6TFRMUUtualczTFVSeHZ4b0ZlcVRKOWNmMiIsInN1YiI6IllGekxUTFFLbmpXM0xVUnh2eG9GZXFUSjljZjIiLCJpYXQiOjE1ODk2NTE2NTQsImV4cCI6MTU4OTY1NTI1NCwiZW1haWwiOiJpdmFuLmJyYWprb3ZpY0BpY2xvdWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIml2YW4uYnJhamtvdmljQGljbG91ZC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.cQqygU6Y9TX6IX-xIvOLYlDJsrfdfl6hJqlijfMc8knlU-G383OmUe8e1QG2bVfrYwd4qsdp5AnuPg52HqAvgPzsUM5E90bJWsSVftEzjDtwXaY2Rvp-g2A-nLJyNLJ8kbjiN-cjTu1FYQpoOQkyidzcSD2iljepYEgyaZCIDyAYPIg90icPutEKzpoNlkoEsxWwcWvBVmHQP7bjCtuCFGmfgYdSeUWKg_EWHlEkMSn7f7ZMMs25gqaKPOK4xkW4wv_MbWgMRzFZmdpnSNall2paKo-orKWyYXOI9PQirhaTnXjc8UXcCjYkddJN-OKq5n5amBBrIaE9sPG4WFnw_g
+
+####################################################
+### USER
+####################################################
 
 ### Login user
 
@@ -34,15 +39,40 @@ content-type: application/json
 GET {{baseUrl}}/user/ivan.brajkovic@icloud.com
 authorization: Bearer {{token}}
 
-### Get data
+####################################################
+### DATA
+####################################################
 
-GET {{baseUrl}}/data-top
-token: {{token}}
+### Get all data
+
+GET {{baseUrl}}/data
+#authorization: Bearer {{token}}
+
+### Get last N
+
+GET {{baseUrl}}/data/last/3
+#authorization: Bearer {{token}}
+
+### Insert sensor data
+
+POST {{baseUrl}}/data
+content-type: application/json
+
+{
+  "arduino": "1",
+  "co2": "10",
+  "humidity": "20",
+  "temperature": "30"
+}
+
+####################################################
+### SETTINGS
+####################################################
 
 ### Get settings by id
 
-GET {{baseUrl}}/settings/1s
-authorization: Bearer {{token}}
+GET {{baseUrl}}/settings/1
+#authorization: Bearer {{token}}
 
 ### Get all settings
 

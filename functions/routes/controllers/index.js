@@ -1,7 +1,5 @@
 module.exports = {
-  // AuthController: require('./auth-controller'),
-  // UserController: require('./user-controller'),
-  // DataController: require('./data-controller'),
   user: require('./user-controller'),
+  data: require('./data-controller'),
   settings: require('./settings-controller')
 };

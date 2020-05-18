@@ -10,13 +10,16 @@ const { checkNumber, checkDate } = require('./validate-rules');
 
 module.exports = {
   // Check number of row param
-  selectLastNRows: [checkNumber(param('n'))],
+  selectAll: [param('n').customSanitizer(() => 0)],
+
+  // Check number of row param
+  selectLastN: [checkNumber(param('n'))],
 
   // Check from and to req fileds
   fromTo: [checkDate(body('from')), checkDate(body('to'))],
 
   // Check value to insert
-  insertSensorData: [
+  insert: [
     checkNumber(body('arduino')),
     checkNumber(body('co2')),
     checkNumber(body('humidity')),

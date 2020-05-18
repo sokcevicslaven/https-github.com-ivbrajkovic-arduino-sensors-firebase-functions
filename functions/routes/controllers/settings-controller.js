@@ -39,6 +39,7 @@ exports.selectId = ({ params }, res, next) =>
       else next(new ErrorHandler(errorMessages.DB_DOCUMENT_NOT_FOUND));
     })
     .catch(err => {
+      console.log(`Error in getting arduino settings, error: ${err}`);
       next(new ErrorHandler(err));
     });
 /**************************************************************/
