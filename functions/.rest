@@ -41,7 +41,7 @@ GET {{baseUrl}}/user/email/ivan.brajkovic@icloud.com
 
 ### Get user by email
 
-GET {{baseUrl}}/user/username/ivbrajkovics
+GET {{baseUrl}}/user/username/ivbrajkovic
 #authorization: Bearer {{token}}
 
 ####################################################

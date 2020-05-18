@@ -2,30 +2,30 @@
  * Error exception class
  */
 
-module.exports = class ErrorException {
-  constructor(props) {
-    this.code = props.code || 'unexpected';
-    this.statusCode = props.statusCode || 500;
-    this.message = props.message || 'Internal Server Error';
-    this.details = props.details || [];
-  }
+// module.exports = class ErrorException {
+//   constructor(props) {
+//     this.code = props.code || 'unexpected';
+//     this.statusCode = props.statusCode || 500;
+//     this.message = props.message || 'Internal Server Error';
+//     this.details = props.details || [];
+//   }
 
-  /**
-   * Return JSON representation of ErrorException object
-   * @param {ErrorException} err Error object
-   */
-  static responseJson(err) {
-    return {
-      success: false,
-      error: {
-        code: err.code,
-        message: err.message,
-        details: err.details
-        // stack: err.stack
-      }
-    };
-  }
-};
+//   /**
+//    * Return JSON representation of ErrorException object
+//    * @param {ErrorException} err Error object
+//    */
+//   static responseJson(err) {
+//     return {
+//       success: false,
+//       error: {
+//         code: err.code,
+//         message: err.message,
+//         details: err.details
+//         // stack: err.stack
+//       }
+//     };
+//   }
+// };
 
 module.exports = class ErrorHandler extends Error {
   constructor(props) {

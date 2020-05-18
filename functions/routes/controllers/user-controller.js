@@ -95,7 +95,7 @@ exports.register = ({ body }, res, next) => {
 /**************************************************************/
 
 /**************************************************************
-* Check userexist by username or email
+* Check if user exist by username or email
 @param {*} data Client req 
 @returns {*} Response object and status code
 ***************************************************************/
@@ -109,8 +109,16 @@ exports.checkUserByUsernameOrEmail = ({ params }, res, next) => {
     .where(...where)
     .get()
     .then(snapshot => {
-      if (snapshot.empty) res.status(200).json({ [where[0]]: 'not exist' });
-      else res.status(200).json({ [where[0]]: 'exist' });
+      // If no user in database return "ok"
+      if (snapshot.empty) res.status(200).json({ status: 'ok' });
+      else
+        next(
+          new ErrorHandler(
+            username
+              ? errorMessages.USER_USERNAME_ALREADY_TAKEN
+              : errorMessages.USER_EXIST
+          )
+        );
     })
     .catch(err => next(new ErrorHandler(err)));
 };
