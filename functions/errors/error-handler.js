@@ -34,6 +34,7 @@ module.exports = class ErrorHandler extends Error {
     this.statusCode = props.statusCode || 500;
     this.message = props.message || 'Internal Server Error';
     this.details = props.details;
+    this.showStack = props.showStack || undefined;
   }
 
   /**
@@ -45,7 +46,8 @@ module.exports = class ErrorHandler extends Error {
       status: 'error',
       code: err.code,
       message: err.message,
-      stack: process.env.SHOW_STACK_TRACE && err.stack,
+      // stack: process.env.SHOW_STACK_TRACE && err.stack,
+      stack: err.showStack && err.stack,
       details: err.details
     });
   }

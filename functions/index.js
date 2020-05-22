@@ -11,6 +11,9 @@ const app = require('express')();
 // Error module
 const { errorMessages, ErrorHandler } = require('./errors');
 
+// Enable CORS
+app.use(require('cors')({ origin: true }));
+
 // Routes
 app.use('/user', require('./routes/user-route'));
 app.use('/data', require('./routes/data-route'));
@@ -23,7 +26,8 @@ app.use((req, res, next) =>
 
 // Deafult error handler
 app.use((err, req, res, next) => {
-  ErrorHandler.handlerError(new ErrorHandler(err), res);
+  if (err instanceof ErrorHandler) ErrorHandler.handlerError(err, res);
+  else ErrorHandler.handlerError(new ErrorHandler(err), res);
 });
 
 // Export firstore functions
