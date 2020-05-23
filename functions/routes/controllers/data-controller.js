@@ -60,9 +60,17 @@ exports.selectFromTo = ({ body }, res, next) => {
  * @param req
  * @param res
  ************************************************************/
-exports.insert = (req, res) => {
-  // Create new document
-  const sensorData = { ...req.body, date: new Date() /*.toISOString()*/ };
+exports.insert = ({ body }, res) => {
+  const { arduino, co2, humidity, temperature } = body;
+
+  // Add datum created
+  const sensorData = {
+    arduino,
+    co2,
+    humidity,
+    temperature,
+    date: new Date() /*.toISOString()*/
+  };
 
   // Add new document to firebase
   db.collection('sensors')

@@ -9,19 +9,25 @@ const { errorMessages, ErrorHandler } = require('../../errors');
 * Select all arduinos settings
 @returns {*} Response object and status code
 ***************************************************************/
-exports.select = () =>
-  new Promise((resolve, reject) => {
-    db.collection('settings')
-      .get()
-      .then(snapshot => {
-        let sensorsData = [];
-        snapshot.forEach(doc => sensorsData.push(doc.data()));
-        resolve(sensorsData);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+exports.select = (req, res, next) =>
+  db
+    .collection('settings')
+    .get()
+    .then(snapshot => {
+      const data = [];
+      snapshot.forEach(doc =>
+        data.push({
+          arduino: doc.id,
+          settings: doc.data()
+        })
+      );
+      if (data.length > 0) res.status(200).json({ status: 'ok', data });
+      else next(new ErrorHandler(errorMessages.DB_DOCUMENT_NOT_FOUND));
+    })
+    .catch(err => {
+      console.log(`Error in getting arduino settings, error: ${err}`);
+      next(new ErrorHandler(err));
+    });
 /**************************************************************/
 
 /**************************************************************

@@ -82,6 +82,6 @@ GET {{baseUrl}}/settings/1
 ### Get all settings
 
 GET {{baseUrl}}/settings
-token: {{token}}
+# token: {{token}}
 
 ### 
