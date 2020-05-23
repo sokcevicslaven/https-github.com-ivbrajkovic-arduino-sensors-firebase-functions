@@ -1,8 +1,8 @@
 
 # Ctrl + Alt + R
 
-@baseUrl = http://localhost:5000/arduino-sensors-754e5/europe-west1/api
-# @baseUrl = https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api
+# @baseUrl = http://localhost:5000/arduino-sensors-754e5/europe-west1/api
+@baseUrl = https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api
 
 @token = eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1YzlhZWJlMjM0ZGE2MDE2YmQ3Yjk0OTE2OGI4Y2Q1YjRlYzllZWIiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSUIiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXVkIjoiYXJkdWluby1zZW5zb3JzLTc1NGU1IiwiYXV0aF90aW1lIjoxNTg5ODM3MzI5LCJ1c2VyX2lkIjoiWUZ6TFRMUUtualczTFVSeHZ4b0ZlcVRKOWNmMiIsInN1YiI6IllGekxUTFFLbmpXM0xVUnh2eG9GZXFUSjljZjIiLCJpYXQiOjE1ODk4MzczMjksImV4cCI6MTU4OTg0MDkyOSwiZW1haWwiOiJpdmFuLmJyYWprb3ZpY0BpY2xvdWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIml2YW4uYnJhamtvdmljQGljbG91ZC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.SXtsguetlyAMyMWlJKLcRXJjhhjWH0GN5jE44kOlvC5T__gzUBCNr0wC1OVHfjXLaoWgOl4NyYvKTjf7mOTj9691qqa1S1ZR9G6oZycvGcmQn1bUlT7Hvr9rMiRsZIe1Yw14N0kWgoUNiyGM_kn_lZGp5eYrA4qRHFFBA2kvSYfryAvZUuJqAmng5dSV-HU9gLap-_Om3C78zcw2T6jxTG9urFg1JNOGyi00ws_DGzhja510miivcu3JVW5p8PJhFNLHm7JqPVaZa4nakdUSqTzNduCxFOM_g83gRcjPbDAvLRmoIfLhNYnwSUMh2JYXk-K2f0lNajNN1_eXjAkSVg
 
@@ -85,3 +85,26 @@ GET {{baseUrl}}/settings
 # token: {{token}}
 
 ### 
+
+#####################################################
+### Routes summary ###
+
+### GET routes ###
+
+# user
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/user/email/:email
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/user/username/:username
+# settings
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/settings
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/settings/:id
+# data
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/data
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/data/last/:n
+
+### POST routes ###
+
+# user
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/user/login
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/user/register
+# data
+https://europe-west1-arduino-sensors-754e5.cloudfunctions.net/api/data
